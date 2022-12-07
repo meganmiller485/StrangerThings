@@ -33,12 +33,78 @@ export const makePosts = async(token, title, description, price, willDeliver) =>
 export const fetchPosts = async() => {
     try {
         const response = await fetch(`https://strangers-things.herokuapp.com/api/${cohort}/posts`);
+        //add a method to pass token 
+
         const {data: {posts},
     } = await response.json()
         
+    // console.log(posts);
         return posts;
     } catch (error) {
         console.error(error)
     };
 };
 
+
+//api call to delete post
+
+export const deletePost = async(postId, token) => {
+  try {
+    const response = await fetch(`https://strangers-things.herokuapp.com/api/${cohort}/posts/${postId}`, {
+      method: "DELETE",
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      }
+    });
+    
+    const data = response.json()
+    console.log("data from delete", data)
+    return data;
+  
+  
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+
+
+
+
+
+
+
+
+// updataPartialPst = acync(postId, updateField)
+// patch
+
+
+//
+// export const updatePost = async (token, postId, updatedField) => {
+//   try {
+//     const response = await fetch(`http://strangers-things.herokuapp.com/api/${cohort}/posts/${postId}`, {
+//       method: "PATCH",
+//       headers: {
+//         'Content-Type': 'application/json',
+//         'Authorization': `Bearer ${token}`
+//       },
+//       body: JSON.stringify({
+//         post: {
+//           title,
+//           description, 
+//           price,
+//           location,
+//           willDeliver
+//         }
+//       })
+//     });
+
+//     const data = await response.json()
+//     console.log(data)
+//     return data;
+
+//   } catch (error) {
+//     console.error(error);
+//   }
+// }

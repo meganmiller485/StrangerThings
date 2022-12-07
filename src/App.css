@@ -39,3 +39,13 @@
 .read-the-docs {
   color: #888;
 }
+
+.post{
+  border: 2pt black solid;
+  background-color: rgb(127, 136, 121);
+}
+
+.header{
+  background-color: rgb(127, 136, 121);
+}
+

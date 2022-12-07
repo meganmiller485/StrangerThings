@@ -1,57 +1,69 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
+import { deletePost } from "../api/posts";
 // import { makePosts } from "../api/posts";
 import AddNewPost from "./AddNewPost";
+// import { updatePost } from "../api/posts";
 
-const Posts = ({ allPosts}) => {
-    // token,setPost,
-    // const [title, setTitle] = useState("");
-    // const [description, setDescription] = useState("");
-    // const [price, setPrice] = useState("");
-    // const [willDeliver, setWillDeliver] = useState("");
+const Posts = ({ allPosts, setAllPosts, setPost, token }) => {
+	// const updatedFields = {
+	//     title,
+	//     description,
+	//     price,
+	//     location,
+	//     willDeliver
+	// }
 
-    // const submitHandler = async(event) => {
-    //     event.preventDefault();
-    //     //how to add a post - calls makePosts- passes in the variables, sets single post state to posttoAdd
-    //     const postToAdd = await makePosts(token, title, description, price, willDeliver);
-    //     setPost(postToAdd)
-    // };
+	return (
+		<div id='AllPostFunctions'>
+			<AddNewPost
+				token={token}
+				setPost={setPost}
+			/>
+			<div id='all-posts-container'>
+				{allPosts.map((post) => {
+					const postId = post._id;
+					return (
+						<div
+							className='post'
+							key={post._id}
+						>
+							<div>Title: {post.title}</div>
+							<div>Description: {post.description}</div>
+							<div>Price: {post.price}</div>
+							<div>
+								{post.willDeliver}
+								<p>{post.willDeliver ? "Will Deliver!" : "No Delivery"}</p>
+								<p>{postId}</p>
+							</div>
+							<button
+							// onClick = {async () => {
+							//     const updatedPost = await updatePost(postId, updatedFields);
 
-    return(
-        <div id="addNewPost">
-            {/* <AddNewPost /> */}
-            {/* <form
-            onSubmit={submitHandler}>
-                <label htmlFor="Title">Title: </label>
-                <input value={title} type={"text"} onChange={(event)=>{setTitle(event.target.value)}} placeholder="Title"></input>
-                <label htmlFor="Description">Description: </label>
-                <input value={description} type={"text"} onChange={(event)=>{setDescription(event.target.value)}} placeholder="Description"></input>
-                <label htmlFor="Price">Price: </label>
-                <input value={price} type={"text"} onChange={(event)=>{setPrice(event.target.value)}} placeholder="Price"></input>
-                <label htmlFor="Will-Deliver">Will Deliver: </label>
-                <input value={willDeliver} type={"boolean"} onChange={(event)=>{setWillDeliver(event.target.value)}} placeholder="Will Deliver"></input>
-                <button type={"submit"}>Submit</button>
-            </form> */}
-            <div id="all-posts-container">
-                {
-                    allPosts.map((post) => {
-                        return (
-                            <div key={post._id}>
-                                <div>Title: {post.title}</div>
-                                <div>Description: {post.description}</div>
-                                <div>Price: {post.price}</div>
-                                <div>{post.willDeliver}
-                                    <p>{post.willDeliver ? "Will Deliver!" : "No Delivery"}</p>
-                                </div>
-                            </div>
-                        );
-                    })
-                }
-            </div>
-        </div>
-    );
+							// }}
+							// //on click its going to trigger an ansynce function which will return the updated post
 
-    
+							//THIS BUTTON WILL GO TO A FORM AND ASSIGN THE PARAMETERS TO THE STATE, THEN THERE WILL BE AN
+							//UPDATE BUTTON WHICH WILL HAVE THE API CALL TO UPDATE THE PARAMETERS
+							>
+								Edit Post
+							</button>
+							<button
+								onClick={async () => {
+									const deletedPost = await deletePost(postId, token);
+									setAllPosts([
+										...allPosts.filter((post) => post._id !== deletedPost._id),
+									]);
+									console.log(deletedPost);
+								}}
+							>
+								Delete Post
+							</button>
+						</div>
+					);
+				})}
+			</div>
+		</div>
+	);
 };
 
 export default Posts;
-

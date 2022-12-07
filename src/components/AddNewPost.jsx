@@ -15,7 +15,7 @@ const AddNewPost = ({token,setPost}) => {
     };
     
     return(
-        <form
+        <form className="newpostform"
             onSubmit={submitHandler}>
                 <label htmlFor="Title">Title: </label>
                 <input value={title} type={"text"} onChange={(event)=>{setTitle(event.target.value)}} placeholder="Title"></input>
