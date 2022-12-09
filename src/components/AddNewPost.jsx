@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { makePosts } from "../api/posts";
 
-const AddNewPost = ({ token, setPost }) => {
+const AddNewPost = ({ token, setPost, setAllPosts, allPosts }) => {
 	const [title, setTitle] = useState("");
 	const [description, setDescription] = useState("");
 	const [price, setPrice] = useState("");
@@ -17,7 +17,8 @@ const AddNewPost = ({ token, setPost }) => {
 			price,
 			willDeliver
 		);
-		setPost(postToAdd);
+		//this sets our all posts state to add our new post and then add all our other posts
+		setAllPosts([postToAdd, ...allPosts]);
 	};
 
 	return (

@@ -22,7 +22,9 @@ export const makePosts = async(token, title, description, price, willDeliver) =>
       const {
         data: {post},
     } = await response.json();
-      return post;
+      console.log(post)
+    return post;
+
     
     } catch (error) {
         console.log(error);
@@ -57,10 +59,7 @@ export const deletePost = async(postId, token) => {
         'Authorization': `Bearer ${token}`
       }
     });
-    
-    const data = response.json()
-    console.log("data from delete", data)
-    return data;
+    return("post deleted")
   
   
   } catch (error) {
@@ -68,30 +67,34 @@ export const deletePost = async(postId, token) => {
   }
 }
 
+//api to change post
+export const updatePost = async (postId, token, title,
+  description,
+  price,
+  willDeliver) => {
+  try {
+    const response = await fetch(`http://strangers-things.herokuapp.com/api/${cohort}/posts/${postId}`, {
+      method: "PATCH",
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      },
+      body: JSON.stringify({
+        title,
+        description,
+        price,
+        willDeliver,
+      })
+    });
 
-// export const updatePost = async (postId, token, fieldsToUpdate) => {
-//   try {
-//     const response = await fetch(`http://strangers-things.herokuapp.com/api/${cohort}/posts/${postId}`, {
-//       method: "PATCH",
-//       headers: {
-//         'Content-Type': 'application/json',
-//         'Authorization': `Bearer ${token}`
-//       },
-//       body: JSON.stringify({
-//         editTitle,
-//         editDescription,
-//         editPrice,
-//         editwillDeliver,
-//       })
-//     });
+    const {data: {post},
+  } = await response.json()
+    console.log(post)
+    return post;
 
-//     const data = await response.json()
-//     console.log(data)
-//     return data;
+  } catch (error) {
+    console.error(error);
+  }
+}
 
-//   } catch (error) {
-//     console.error(error);
-//   }
-// }
-
-
+//CONSOLE.LOG EVERYTHING AROUND THE USERNAME IN POSTS

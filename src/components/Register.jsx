@@ -3,6 +3,7 @@ import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
 import { registerUser } from "../api/auth";
+import { NavLink } from "react-router-dom";
 
 //need to pass setToken into register so we can settoken state to token on submit
 const Register = ({ setToken }) => {
@@ -14,10 +15,17 @@ const Register = ({ setToken }) => {
 		event.preventDefault();
 		//assign token (what we returned in our api call) to the username/password of the registered user
 		const token = await registerUser(username, password);
+		//if there is no username or password, dont make the call to the api
+		// if (!username || !password) {
+		// 	return;
+		// }
 		//set the local storage to the token
 		localStorage.setItem("token", token);
 		//pass the token created by the username/password to the set token function created in App
 		setToken(token);
+		// console.log(token);
+
+		// trigger profile
 	};
 
 	return (

@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useEffect } from "react";
-// import { updatePost } from "../api/posts";
-import AddNewPost from "./AddNewPost";
+import { updatePost } from "../api/posts";
 
 const EditPost = ({
 	setAllPosts,
@@ -39,15 +38,21 @@ const EditPost = ({
 
 	const submitHandler = async (event) => {
 		event.preventDefault();
-		const updatedPost = await updatePost(postId, token, fieldsToUpdate);
+		const updatedPost = await updatePost(
+			postId,
+			token,
+			editTitle,
+			editDescription,
+			editPrice,
+			editwillDeliver
+		);
 		//this will access the api and return the correct thingys
-		setAllPosts([...allPosts.filter((post) => post._id !== updatedPost._id)]);
-		console.log(updatedPost);
+		setAllPosts([updatedPost, ...allPosts]);
 	};
 
 	// console.log(editTitle);
 	return (
-		<form className='editpostform'>
+		<form className='editpostform' onSubmit={submitHandler}>
 			<label htmlFor='Title'>Title: </label>
 			<input
 				value={editTitle}

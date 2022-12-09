@@ -9,6 +9,7 @@ import EditPost from "./components/EditPost";
 import NavBar from "./components/Navbar";
 import Home from "./components/Home";
 import Login from "./components/Login";
+import Profile from "./components/Profile";
 
 function App() {
 	//create state for the token and the user which will be take from the registration and used
@@ -19,6 +20,7 @@ function App() {
 	const [post, setPost] = useState({});
 	//this will update to a list of individual objects which are posts
 	const [allPosts, setAllPosts] = useState([]);
+	const [isLoggedIn, setIsLoggedIn] = useState(false);
 
 	//this use effect creates a function which grabs the api for the single user
 	//and attaches it to the token,
@@ -43,14 +45,27 @@ function App() {
 		getAllPosts();
 		// }, [allPosts]);
 	}, []);
+	// console.log(allPosts);
 
 	return (
 		<div className='App'>
-			<NavBar />
+			<NavBar isLoggedIn={isLoggedIn} />
 			<Routes>
 				<Route path='/' element={<Home user={user} />} />
-				<Route path='/login' element={<Login />} />
+				<Route
+					path='/login'
+					element={
+						<Login
+							setToken={setToken}
+							token={token}
+							setUser={setUser}
+							setIsLoggedIn={setIsLoggedIn}
+							isLoggedIn={isLoggedIn}
+						/>
+					}
+				/>
 				<Route path='/register' element={<Register setToken={setToken} />} />
+				<Route path='/profile' element={<Profile />} />
 				<Route
 					path='/posts'
 					element={
