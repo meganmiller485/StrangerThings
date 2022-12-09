@@ -4,15 +4,11 @@ import Register from "./components/Register";
 import { fetchMe } from "./api/auth";
 import Posts from "./components/Posts";
 import { fetchPosts } from "./api/posts";
-import {
-	BrowserRouter,
-	Routes,
-	Route,
-	Outlet,
-	Link,
-	createBrowserRouter,
-	createRoutesFromElements,
-} from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
+import EditPost from "./components/EditPost";
+import NavBar from "./components/Navbar";
+import Home from "./components/Home";
+import Login from "./components/Login";
 
 function App() {
 	//create state for the token and the user which will be take from the registration and used
@@ -45,42 +41,46 @@ function App() {
 			setAllPosts(data);
 		};
 		getAllPosts();
-	}, [allPosts]);
+		// }, [allPosts]);
+	}, []);
 
 	return (
 		<div className='App'>
-			<header className='header'>
-				<div id='navbar'>
-					<Link to={"/home"}>Home</Link>
-					<Link to={"/posts"}>Posts</Link>
-					<Link to={"/profile"}>Profile</Link>
-					<Link to={"/logout"}>Log Out</Link>
-				</div>
-			</header>
-			<div id='mainPage'>
-				<h1>Welcome {user?.username}!</h1>
-
-				<Posts
-					token={token}
-					setPost={setPost}
-					allPosts={allPosts}
-					setAllPosts={setAllPosts}
+			<NavBar />
+			<Routes>
+				<Route path='/' element={<Home user={user} />} />
+				<Route path='/login' element={<Login />} />
+				<Route path='/register' element={<Register setToken={setToken} />} />
+				<Route
+					path='/posts'
+					element={
+						<Posts
+							token={token}
+							setPost={setPost}
+							allPosts={allPosts}
+							setAllPosts={setAllPosts}
+							user={user}
+						/>
+					}
 				/>
-				<Register setToken={setToken} />
-				{/* <Posts token={token} setPost={setPost} allPosts={allPosts} setAllPosts={setAllPosts}/> */}
-			</div>
+			</Routes>
 		</div>
 	);
 }
 
-const router = createBrowserRouter(
-	createRoutesFromElements(
-		<Route
-			path='/'
-			element={<App />}
-		/>
-	)
-);
+// const router = createBrowserRouter(
+// 	createRoutesFromElements(
+// 		<Route
+// 			path='/'
+// 			element={<App />}
+// 		>
+// 			<Route
+// 				path='/posts'
+// 				element={<Posts />}
+// 			></Route>
+// 		</Route>
+// 	)
+// );
 
 {
 	/* <Routes>

@@ -69,19 +69,7 @@ export const deletePost = async(postId, token) => {
 }
 
 
-
-
-
-
-
-
-
-// updataPartialPst = acync(postId, updateField)
-// patch
-
-
-//
-// export const updatePost = async (token, postId, updatedField) => {
+// export const updatePost = async (postId, token, fieldsToUpdate) => {
 //   try {
 //     const response = await fetch(`http://strangers-things.herokuapp.com/api/${cohort}/posts/${postId}`, {
 //       method: "PATCH",
@@ -90,13 +78,10 @@ export const deletePost = async(postId, token) => {
 //         'Authorization': `Bearer ${token}`
 //       },
 //       body: JSON.stringify({
-//         post: {
-//           title,
-//           description, 
-//           price,
-//           location,
-//           willDeliver
-//         }
+//         editTitle,
+//         editDescription,
+//         editPrice,
+//         editwillDeliver,
 //       })
 //     });
 
@@ -108,3 +93,5 @@ export const deletePost = async(postId, token) => {
 //     console.error(error);
 //   }
 // }
+
+
