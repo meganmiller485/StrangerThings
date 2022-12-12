@@ -5,7 +5,6 @@ import { fetchMe } from "./api/auth";
 import Posts from "./components/Posts";
 import { fetchPosts } from "./api/posts";
 import { Routes, Route } from "react-router-dom";
-import EditPost from "./components/EditPost";
 import NavBar from "./components/Navbar";
 import Home from "./components/Home";
 import Login from "./components/Login";
@@ -13,13 +12,10 @@ import Profile from "./components/Profile";
 import MessageForm from "./components/MessageForm";
 
 function App() {
-	//create state for the token and the user which will be take from the registration and used
-	//throughout the app
-	//set the state for token to the local storage as the token
 	const [token, setToken] = useState(localStorage.getItem("token"));
 	const [user, setUser] = useState({});
 	const [post, setPost] = useState({});
-	//this will update to a list of individual objects which are posts
+
 	const [allPosts, setAllPosts] = useState([]);
 	const [isLoggedIn, setIsLoggedIn] = useState(false);
 
@@ -44,9 +40,7 @@ function App() {
 			setAllPosts(data);
 		};
 		getAllPosts();
-		// }, [allPosts]);
 	}, []);
-	// console.log(allPosts);
 
 	return (
 		<div className='App'>
@@ -98,42 +92,5 @@ function App() {
 		</div>
 	);
 }
-
-// const router = createBrowserRouter(
-// 	createRoutesFromElements(
-// 		<Route
-// 			path='/'
-// 			element={<App />}
-// 		>
-// 			<Route
-// 				path='/posts'
-// 				element={<Posts />}
-// 			></Route>
-// 		</Route>
-// 	)
-// );
-
-{
-	/* <Routes>
-	>
-	<Route
-		path='posts'
-		element={
-			<Posts
-				token={token}
-				setPost={setPost}
-				allPosts={allPosts}
-				setAllPosts={setAllPosts}
-			/>
-		}
-	/>
-</Routes>; */
-}
-
-// const Layout = () => {
-//   return(
-
-//   )
-// }
 
 export default App;

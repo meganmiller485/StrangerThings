@@ -26,14 +26,6 @@ const EditPost = ({
 		seteditWillDeliver(postToEdit.willdeliver);
 	}, [postToEdit]);
 
-	// const fieldsToUpdate = {
-	// 	editTitle,
-	// 	editDescription,
-	// 	editPrice,
-	// 	editwillDeliver,
-	// };
-	// console.log(fieldsToUpdate);
-
 	const postId = postToEdit._id;
 
 	const submitHandler = async (event) => {
@@ -46,11 +38,10 @@ const EditPost = ({
 			editPrice,
 			editwillDeliver
 		);
-		//this will access the api and return the correct thingys
+		//this will access the api and return the correct fields
 		setAllPosts([updatedPost, ...allPosts]);
 	};
 
-	// console.log(editTitle);
 	return (
 		<div className='editpostform'>
 			<h4>Edit an Existing Post</h4>
@@ -91,10 +82,7 @@ const EditPost = ({
 					}}
 					placeholder='Will Deliver'
 				></input>
-				<button type={"submit"}>
-					Submit Your Edit
-					{/* when I click this button I want the api to call the post with the right id and alter the inputs*/}
-				</button>
+				<button type={"submit"}>Submit Your Edit</button>
 			</form>
 		</div>
 	);

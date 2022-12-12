@@ -1,19 +1,14 @@
 import React, { useState, useEffect } from "react";
-// import { makePosts } from "../api/posts";
 import AddNewPost from "./AddNewPost";
-// import { updatePost } from "../api/posts";
 import EditPost from "./EditPost";
-// import EditButton from "./Edit Button";
 import ModifyButtons from "./ModifyButtons";
 import { Link } from "react-router-dom";
 import MessageForm from "./MessageForm";
 
 const Posts = ({ allPosts, setAllPosts, setPost, token, user }) => {
-	//create a new state for the post that will be edited
 	const [postToEdit, setPostToEdit] = useState({});
-	// console.log("in posts to edit", postToEdit);
+
 	const currentUserName = user.username;
-	// console.log("this is the current user", currentUserName);
 
 	return (
 		<div id='AllPostFunctions'>
@@ -36,7 +31,6 @@ const Posts = ({ allPosts, setAllPosts, setPost, token, user }) => {
 			</div>
 			<div id='all-posts-container'>
 				<h2>All Available Posts</h2>
-				{/* //im gonna need a ternary here to check if all posts  */}
 				{allPosts.map((post) => {
 					const postId = post._id;
 					const userId = post.author.username;

@@ -13,10 +13,7 @@ const ModifyButtons = ({
 		<div>
 			<button
 				onClick={() => {
-					// console.log("click", post);
-					//on the click, it will set that post to edit with the current clicked post
 					setPostToEdit(post);
-					//i want to set the edit form to the current inputs of post from map
 				}}
 			>
 				Edit Post

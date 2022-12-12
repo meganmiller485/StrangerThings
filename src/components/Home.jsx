@@ -1,6 +1,6 @@
 import React from "react";
 
-const Home = ({ user }) => {
+const Home = () => {
 	return (
 		<div className='mainpage'>
 			<h1>Welcome to Stranger's Things!</h1>
