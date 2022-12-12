@@ -18,28 +18,35 @@ const EditPost = ({
 	const [editwillDeliver, seteditWillDeliver] = useState(
 		postToEdit.willdeliver
 	);
+	const [editPostId, setEditPostId] = useState(postToEdit._id);
 
 	useEffect(() => {
 		setEditTitle(postToEdit.title);
 		setEditDescription(postToEdit.description);
 		setEditPrice(postToEdit.price);
 		seteditWillDeliver(postToEdit.willdeliver);
+		setEditPostId(postToEdit._id);
 	}, [postToEdit]);
 
 	const postId = postToEdit._id;
 
 	const submitHandler = async (event) => {
-		event.preventDefault();
-		const updatedPost = await updatePost(
-			postId,
-			token,
-			editTitle,
-			editDescription,
-			editPrice,
-			editwillDeliver
-		);
-		//this will access the api and return the correct fields
-		setAllPosts([updatedPost, ...allPosts]);
+		try {
+			event.preventDefault();
+			let updatedPost = async () => {
+				await updatePost(
+					token,
+					postToEdit._id,
+					editTitle,
+					editDescription,
+					editPrice,
+					editwillDeliver
+				);
+			};
+			updatedPost();
+		} catch (error) {
+			console.log(error);
+		}
 	};
 
 	return (
