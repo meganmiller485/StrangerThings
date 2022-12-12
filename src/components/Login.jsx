@@ -1,15 +1,26 @@
 import React, { useState } from "react";
 import { loginUser } from "../api/auth";
+import { Link } from "react-router-dom";
 
-const Login = ({ token, setIsLoggedIn, isLoggedIn }) => {
+const Login = ({ token, setToken, setUser, setIsLoggedIn, isLoggedIn }) => {
 	const [username, setUsername] = useState("");
 	const [password, setPassword] = useState("");
 
 	//this is just a function which will do everything on the submit button in the form
 	const submitHandler = async (event) => {
-		event.preventDefault();
-		const loggedInUser = loginUser(username, password);
-		!token ? setIsLoggedIn(false) : setIsLoggedIn(true);
+		try {
+			event.preventDefault();
+			console.log(username, password);
+			const token = await loginUser(username, password);
+			// !token ? setIsLoggedIn(false) : setIsLoggedIn(true);
+			console.log(token);
+
+			setToken(token);
+			localStorage.setItem("token", token);
+			console.log(username, token);
+		} catch (error) {
+			console.error(error);
+		}
 
 		// localStorage.setItem("token", token);
 
@@ -17,7 +28,7 @@ const Login = ({ token, setIsLoggedIn, isLoggedIn }) => {
 	};
 
 	return (
-		<div id='form'>
+		<div id='loginform'>
 			<form onSubmit={submitHandler}>
 				<label htmlFor='Username'>Username: </label>
 				<input

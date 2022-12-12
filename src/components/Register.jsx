@@ -29,7 +29,7 @@ const Register = ({ setToken }) => {
 	};
 
 	return (
-		<div id='form'>
+		<div id='registerform'>
 			<form onSubmit={submitHandler}>
 				<label htmlFor='Username'>Username: </label>
 				<input

@@ -1,18 +1,16 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const LogOutButton = ({ isLoggedIn }) => {
 	return (
 		<button
 			onClick={() => {
 				{
-					isLoggedIn
-						? localStorage.removeItem("token")
-						: //CHANGE PAGES TO HOME
-						  console.log("cannot log out");
+					localStorage.removeItem("token");
 				}
 			}}
 		>
-			Log Out
+			<Link to='/'>Log Out</Link>
 		</button>
 	);
 };

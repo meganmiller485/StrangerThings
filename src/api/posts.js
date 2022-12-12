@@ -2,8 +2,8 @@
 const cohort = "2211-FTB-ET-WEB-FT";
 //need to make an api call to push up the new posts to the api based on a token
 export const makePosts = async(token, title, description, price, willDeliver) => {
-    try {
-        const response = await fetch(`https://strangers-things.herokuapp.com/api/${cohort}/posts`, {
+      try {  
+    const response = await fetch(`https://strangers-things.herokuapp.com/api/${cohort}/posts`, {
         method: "POST",
         headers: {
           'Content-Type': 'application/json',
@@ -68,7 +68,7 @@ export const deletePost = async(postId, token) => {
 }
 
 //api to change post
-export const updatePost = async (postId, token, title,
+export const updatePost = async (token, postId, title,
   description,
   price,
   willDeliver) => {
@@ -80,17 +80,17 @@ export const updatePost = async (postId, token, title,
         'Authorization': `Bearer ${token}`
       },
       body: JSON.stringify({
+        post: {
         title,
         description,
         price,
         willDeliver,
-      })
+    }})
     });
 
-    const {data: {post},
-  } = await response.json()
-    console.log(post)
-    return post;
+    const data = await response.json()
+    console.log(data)
+    // return post;
 
   } catch (error) {
     console.error(error);

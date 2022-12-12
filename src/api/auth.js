@@ -27,6 +27,7 @@ export const registerUser = async(username, password) => {
         const {
             data: {token},
         } = await response.json();
+        console.log(token)
         return token;
         }
     catch (error) {
@@ -56,11 +57,11 @@ export const fetchMe = async(token) => {
 //api route used for a user to login when they already have an account
 export const loginUser = async(username, password) => {
   try {
-    console.log("logging user in!")
+    
       const response = await fetch(`https://strangers-things.herokuapp.com/api/${cohort}/users/login`, {
       method: "POST",
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify({
        user: {
@@ -77,7 +78,10 @@ export const loginUser = async(username, password) => {
       const {
           data: {token},
       } = await response.json();
+      
+      console.log("this is login user", token)
       return token;
+      
       }
   catch (error) {
   console.error(error)

@@ -10,6 +10,7 @@ import NavBar from "./components/Navbar";
 import Home from "./components/Home";
 import Login from "./components/Login";
 import Profile from "./components/Profile";
+import MessageForm from "./components/MessageForm";
 
 function App() {
 	//create state for the token and the user which will be take from the registration and used
@@ -49,7 +50,10 @@ function App() {
 
 	return (
 		<div className='App'>
-			<NavBar isLoggedIn={isLoggedIn} />
+			<header>
+				<NavBar isLoggedIn={isLoggedIn} />
+			</header>
+
 			<Routes>
 				<Route path='/' element={<Home user={user} />} />
 				<Route
@@ -65,7 +69,18 @@ function App() {
 					}
 				/>
 				<Route path='/register' element={<Register setToken={setToken} />} />
-				<Route path='/profile' element={<Profile />} />
+				<Route
+					path='/profile'
+					element={
+						<Profile
+							token={token}
+							setPost={setPost}
+							allPosts={allPosts}
+							setAllPosts={setAllPosts}
+							user={user}
+						/>
+					}
+				/>
 				<Route
 					path='/posts'
 					element={
@@ -78,6 +93,7 @@ function App() {
 						/>
 					}
 				/>
+				<Route path='/messageform' element={<MessageForm />} />
 			</Routes>
 		</div>
 	);

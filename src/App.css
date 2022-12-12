@@ -9,64 +9,62 @@
   text-align: center;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.userProfile{
+  display: flex;
+  justify-content: center;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.account{
+  border: 2pt black solid;
+  background-color: rgb(70, 75, 77);
+  padding: 1rem;
+  max-width: 500px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
-}
-
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
+.userPost{
+  border: 2pt black solid;
+  background-color: rgb(127, 136, 121);
+  padding: 1rem;
+  max-width: 500px;
 }
 
 .post{
   border: 2pt black solid;
   background-color: rgb(127, 136, 121);
+  max-width: 500px;
+  padding: 1rem;
 }
 
 .editpostform{
   border: 2pt black solid;
   background-color: rgb(121, 133, 136);
+  max-width: 400px;
+  padding: 1rem;
 }
 .newpostform{
   border: 2pt black solid;
   background-color: rgb(70, 75, 77);
-}
+  max-width: 400px;
+  padding: 1rem;
 
-.header{
-  background-color: rgb(81, 90, 75);
-  height: 5rem;
-  font-size: 12pt;
-  padding-top: 1.5em;
 }
 
 #AllPostFunctions{
   display: flex;
-  flex-direction: row-reverse;
-  flex-grow: 6;
+  flex-direction: row-reverse; 
+
+  flex-grow: 2;
+}
+
+#loginform{
+
+  padding: 1rem
+}
+
+#registerform{
+  padding: 1rem
+}
+
+.messageForm{
+  padding: 1rem
 }

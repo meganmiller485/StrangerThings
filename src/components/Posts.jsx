@@ -5,6 +5,8 @@ import AddNewPost from "./AddNewPost";
 import EditPost from "./EditPost";
 // import EditButton from "./Edit Button";
 import ModifyButtons from "./ModifyButtons";
+import { Link } from "react-router-dom";
+import MessageForm from "./MessageForm";
 
 const Posts = ({ allPosts, setAllPosts, setPost, token, user }) => {
 	//create a new state for the post that will be edited
@@ -33,6 +35,7 @@ const Posts = ({ allPosts, setAllPosts, setPost, token, user }) => {
 				/>
 			</div>
 			<div id='all-posts-container'>
+				<h2>All Available Posts</h2>
 				{/* //im gonna need a ternary here to check if all posts  */}
 				{allPosts.map((post) => {
 					const postId = post._id;
@@ -45,6 +48,13 @@ const Posts = ({ allPosts, setAllPosts, setPost, token, user }) => {
 							<div>
 								{post.willDeliver}
 								<p>{post.willDeliver ? "Will Deliver!" : "No Delivery"}</p>
+								{currentUserName === userId ? (
+									""
+								) : (
+									<button>
+										<Link to='/messageform'>Contact Seller</Link>
+									</button>
+								)}
 							</div>
 
 							<div>
